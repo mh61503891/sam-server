@@ -1,0 +1,19 @@
+defaults: &defaults
+  ldap:
+    host: 'ldap.example.net'
+    port: 389
+    auth:
+      username: 'cn=Admin,dc=example,dc=net'
+      password: 'Admin Pasword'
+      method: :simple
+    base: 'ou=People,dc=example,dc=net'
+    uid: 'uid'
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
