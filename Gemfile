@@ -20,7 +20,6 @@ gem 'underscore-string-rails'
 gem 'devise'
 gem 'settingslogic'
 gem 'net-ldap'
-gem 'dotenv-rails'
 
 group :production do
   gem 'pg'
