@@ -1,0 +1,25 @@
+{
+  "name": "Sunaba Server",
+  "description": "Sunaba Server",
+  "repository": "https://github.com/mh61503891/sunaba-server",
+  "website": "hhttps://github.com/mh61503891/sunaba-server.git",
+  "keywords": [
+    "Software License Manager",
+    "Rails 5"
+  ],
+  "scripts": {
+    "postdeploy": "bundle exec rails db:migrate && bundle exec rails db:seed"
+  },
+  "addons": ["heroku-postgresql"],
+  "success_url": "/",
+  "env": {
+    "RAILS_FORCE_SSL": {
+      "value": "enabled"
+    }
+  },
+  "buildpacks": [{
+    "url": "heroku/nodejs"
+  }, {
+    "url": "heroku/ruby"
+  }]
+}
