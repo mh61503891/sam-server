@@ -1,0 +1,18 @@
+en:
+  devise:
+    sessions:
+      new:
+        login:
+  layouts:
+    application:
+      title: Software License Manager
+  shared:
+    navbar:
+      applications: Applications
+      computers: Computers
+      licenses: Licenses
+      logout: Log out
+      search: Search
+      settings: Settings
+      title: Software License Manager
+      users: Users

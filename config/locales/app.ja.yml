@@ -1,0 +1,18 @@
+ja:
+  devise:
+    sessions:
+      new:
+        login:
+  layouts:
+    application:
+      title: ソフトウェアライセンス管理
+  shared:
+    navbar:
+      applications: アプリケーション
+      computers: コンピュータ
+      licenses: ライセンス
+      logout: ログアウト
+      search: 検索
+      settings: 設定
+      title: ソフトウェアライセンス管理
+      users: ユーザ
