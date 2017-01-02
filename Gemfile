@@ -48,6 +48,7 @@ group :development do
   gem 'awesome_print'
   gem 'annotate'
   gem 'i18n-tasks', require:false
+  gem 'devise-i18n'
   gem 'guard-livereload', require:false
 end
 
