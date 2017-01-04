@@ -84,11 +84,15 @@ GEM
     erubis (2.7.0)
     eventmachine (1.2.1)
     execjs (2.7.0)
+    faker (1.7.1)
+      i18n (~> 0.5)
+    ffaker (2.4.0)
     ffi (1.9.14)
     font-awesome-rails (4.7.0.1)
       railties (>= 3.2, < 5.1)
     font-ionicons-rails (2.0.1.5)
       railties (>= 3.2, < 6.0)
+    forgery (0.6.0)
     formatador (0.2.5)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
@@ -160,6 +164,7 @@ GEM
     parser (2.3.3.1)
       ast (~> 2.2)
     pg (0.19.0)
+    polyglot (0.3.5)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -281,8 +286,11 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   devise-i18n
+  faker
+  ffaker
   font-awesome-rails
   font-ionicons-rails
+  forgery
   guard-livereload
   hirb
   hirb-unicode

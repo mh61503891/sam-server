@@ -31,6 +31,9 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug', platform: :mri
+  gem 'faker'
+  gem 'ffaker'
+  gem 'forgery'
   gem 'rack-mini-profiler', require:false
 end
 
