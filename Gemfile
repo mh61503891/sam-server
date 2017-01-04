@@ -22,6 +22,7 @@ gem 'underscore-string-rails'
 gem 'devise'
 gem 'settingslogic'
 gem 'net-ldap'
+gem 'search_cop'
 
 group :production do
   gem 'pg'
