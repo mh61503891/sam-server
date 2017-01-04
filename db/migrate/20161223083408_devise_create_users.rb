@@ -2,9 +2,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
 
   def change
 
+    # Columns
     create_table :users do |t|
-      # Authenticatable
-      t.string :uid, null:false
+      # Database authenticatable
+      t.string :email
       t.string :encrypted_password
       # Rememberable
       t.datetime :remember_created_at
@@ -16,8 +17,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :last_sign_in_ip
       # Timestamps
       t.timestamps null:false
-      # Options
-      t.string :email
+      # uid for LDAP
+      t.string :uid, null:false
+      t.integer :role, default:0, null:false
+      # Params
       t.string :name
       t.string :name_ruby
       t.string :name_en
@@ -26,8 +29,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :title_en
     end
 
-    add_index :users, :uid, unique:true
-    %i(email name name_ruby name_en title title_ruby title_en).each do |column|
+    # Indexes
+    %i(email uid role, name name_ruby name_en title title_ruby title_en).each do |column|
       add_index :users, column
     end
 

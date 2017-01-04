@@ -13,37 +13,51 @@
 ActiveRecord::Schema.define(version: 20161227032531) do
 
   create_table "applications", force: :cascade do |t|
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "computers", force: :cascade do |t|
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "licenses", force: :cascade do |t|
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "uid",                                 null: false
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
+    t.string   "email"
+    t.string   "encrypted_password"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",       default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["uid"], name: "index_users_on_uid", unique: true
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "uid",                             null: false
+    t.integer  "role",                default: 0, null: false
+    t.string   "name"
+    t.string   "name_ruby"
+    t.string   "name_en"
+    t.string   "title"
+    t.string   "title_ruby"
+    t.string   "title_en"
+    t.index ["email"], name: "index_users_on_email"
+    t.index ["name"], name: "index_users_on_name"
+    t.index ["name_en"], name: "index_users_on_name_en"
+    t.index ["name_ruby"], name: "index_users_on_name_ruby"
+    t.index ["title"], name: "index_users_on_title"
+    t.index ["title_en"], name: "index_users_on_title_en"
+    t.index ["title_ruby"], name: "index_users_on_title_ruby"
+    t.index ["uid"], name: "index_users_on_uid"
+    t.index [nil], name: "index_users_on_role,"
   end
 
 end
