@@ -1,0 +1,7 @@
+<% (0..99).each do |n| %>
+yp_garoon_organization_<%= n %>:
+  name: <%= Faker::Company.name %>
+  version: <%= Time.now.to_i.to_s %>
+  description: <%= Faker::Company.catch_phrase %>
+  order: <%= Faker::Number.between(1, 2147483647) %>
+<% end %>

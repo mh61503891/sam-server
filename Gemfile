@@ -23,6 +23,7 @@ gem 'devise'
 gem 'settingslogic'
 gem 'net-ldap'
 gem 'search_cop'
+gem 'ancestry'
 
 group :production do
   gem 'pg'

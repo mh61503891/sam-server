@@ -58,6 +58,58 @@ ActiveRecord::Schema.define(version: 20161227032531) do
     t.index ["title_ruby"], name: "index_users_on_title_ruby"
     t.index ["uid"], name: "index_users_on_uid"
     t.index [nil], name: "index_users_on_role,"
+  create_table "yp_garoon_organization_users", id: false, force: :cascade do |t|
+    t.integer  "organization_id", null: false
+    t.integer  "user_id",         null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["organization_id", "user_id"], name: "index_yp_garoon_organizations_users_on_keys", unique: true
+    t.index ["organization_id"], name: "index_yp_garoon_organization_users_on_organization_id"
+    t.index ["user_id"], name: "index_yp_garoon_organization_users_on_user_id"
+  end
+
+  create_table "yp_garoon_organizations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "version"
+    t.text     "description"
+    t.integer  "order"
+    t.string   "ancestry"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["ancestry"], name: "index_yp_garoon_organizations_on_ancestry"
+    t.index ["description"], name: "index_yp_garoon_organizations_on_description"
+    t.index ["name"], name: "index_yp_garoon_organizations_on_name"
+    t.index ["order"], name: "index_yp_garoon_organizations_on_order"
+    t.index ["version"], name: "index_yp_garoon_organizations_on_version"
+  end
+
+  create_table "yp_garoon_users", force: :cascade do |t|
+    t.string   "version"
+    t.integer  "order"
+    t.string   "name"
+    t.string   "login_name"
+    t.integer  "status",                  default: 0, null: false
+    t.string   "reading"
+    t.string   "url"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "primary_organization_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["description"], name: "index_yp_garoon_users_on_description"
+    t.index ["email"], name: "index_yp_garoon_users_on_email"
+    t.index ["login_name"], name: "index_yp_garoon_users_on_login_name"
+    t.index ["name"], name: "index_yp_garoon_users_on_name"
+    t.index ["order"], name: "index_yp_garoon_users_on_order"
+    t.index ["phone"], name: "index_yp_garoon_users_on_phone"
+    t.index ["primary_organization_id"], name: "index_yp_garoon_users_on_primary_organization_id"
+    t.index ["reading"], name: "index_yp_garoon_users_on_reading"
+    t.index ["status"], name: "index_yp_garoon_users_on_status"
+    t.index ["title"], name: "index_yp_garoon_users_on_title"
+    t.index ["url"], name: "index_yp_garoon_users_on_url"
+    t.index ["version"], name: "index_yp_garoon_users_on_version"
   end
 
 end
