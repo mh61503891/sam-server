@@ -4,9 +4,10 @@ class CreateTitles < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :name_ruby
       t.string :name_en
+      t.text :note
       t.timestamps
     end
-    %i(name name_ruby name_en).each do |column|
+    %i(name name_ruby name_en note).each do |column|
       add_index :titles, column
     end
   end

@@ -4,11 +4,12 @@ class CreateGroups < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :name_ruby
       t.string :name_en
+      t.text :note
       t.string :ancestry
       t.timestamps
     end
     add_index :groups, :ancestry
-    %i(name name_ruby name_en).each do |column|
+    %i(name name_ruby name_en note).each do |column|
       add_index :groups, column
     end
   end
