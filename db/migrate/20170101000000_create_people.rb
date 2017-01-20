@@ -17,7 +17,7 @@ class CreatePeople < ActiveRecord::Migration[5.0]
       # UID
       t.string :uid, null:false
       # Options
-      t.string :yp_ldap_uid
+      t.string :yp_ldap_uid # dn
       t.string :yp_garoon_uid
       t.string :name
       t.string :name_ruby
