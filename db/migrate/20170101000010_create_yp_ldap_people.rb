@@ -1,15 +1,15 @@
 class CreateYpLdapPeople < ActiveRecord::Migration[5.0]
   def change
     create_table :yp_ldap_people do |t|
-      # person
+      # Person
       t.string :dn, null:false
-      t.string :sn              # [must]
-      t.string :cn              # [must]
+      t.string :sn, null:false  # [must]
+      t.string :cn, null:false  # [must]
       t.string :telephoneNumber # [may]
       t.string :description     # [may]
-      # organizationalPerson
+      # OrganizationalPerson
       t.string :title           # [may]
-      # inetOrgPerson
+      # InetOrgPerson
       t.string :displayName     # [may]
       t.string :givenName       # [may]
       t.string :mail            # [may]
