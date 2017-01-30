@@ -16,5 +16,8 @@ class CreateYpLdapPeople < ActiveRecord::Migration[5.0]
       t.timestamps
     end
     add_index :yp_ldap_people, :dn, unique:true
+    %i(sn cn telephoneNumber description title displayName givenName mail).each do |column|
+      add_index :yp_ldap_people, column
+    end
   end
 end
