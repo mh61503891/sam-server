@@ -1,0 +1,9 @@
+<% 100.times do |n| %>
+person_<%= n %>:
+  uid: <%= "#{Faker::Internet.user_name}_#{n}" %>
+  email: <%= Faker::Internet.safe_email %>
+  name: <%= Faker::Name.name %>
+  name_ruby: <%= Faker::Name.name %>
+  name_en: <%= Faker::Name.name %>
+  description: <%= Faker::Hacker.say_something_smart %>
+<% end %>

@@ -1,4 +1,16 @@
 en:
+  people:
+    index:
+      uid: UID
+      email: E-mail
+      name: Name
+      name_ruby: Name (ruby)
+      name_en: Name (en)
+      title: Title
+      title_ruby: Title (ruby)
+      title_en: Title (en)
+      description: Description
+      people: People
   devise:
     sessions:
       new:

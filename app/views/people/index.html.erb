@@ -1,0 +1,39 @@
+<div class="container">
+  <%= render 'shared/notice' %>
+  <%= render 'shared/alert' %>
+  <h1><%= t('.people')%></h1>
+  <div class="alt-table-responsive">
+    <div id="toolbar">
+      <div class="form-inline" role="form">
+        <button id="remove" class="btn btn-danger" disabled>
+          <i class="glyphicon glyphicon-remove"></i>
+          Delete
+        </button>
+      </div>
+    </div>
+    <table
+      data-toggle="table"
+      data-search="true"
+      data-show-columns="true"
+      data-mobile-responsive="true"
+      data-classes="table table-no-bordered table-hover"
+      data-toolbar="#toolbar"
+      data-url="<%= url_for(people_search_index_path(format:'json')) %>"
+      data-side-pagination="server"
+      data-pagination="true"
+      data-show-refresh="true"
+      data-page-list="[10,100,1000,10000]">
+      <thead>
+        <tr>
+          <th data-checkbox="true"></th>
+          <th data-field="uid" data-sortable="true" data-formatter="link_to"><%= t(".uid") %></th>
+          <th data-field="email" data-sortable="true" data-formatter="mail_to"><%= t(".email") %></th>
+          <th data-field="name" data-sortable="true"><%= t(".name") %></th>
+          <th data-field="name_ruby" data-sortable="true" data-visible="false"><%= t(".name_ruby") %></th>
+          <th data-field="name_en" data-sortable="true" data-visible="false"><%= t(".name_en") %></th>
+          <th data-field="description" data-sortable="true" data-visible="false"><%= t(".description") %></th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+</div>
