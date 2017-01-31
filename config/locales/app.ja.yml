@@ -7,7 +7,9 @@ ja:
     application:
       title: ソフトウェアライセンス管理
   shared:
-    navbar:
+    navbar_public:
+      title: ソフトウェアライセンス管理
+    navbar_private:
       applications: アプリケーション
       computers: コンピュータ
       licenses: ライセンス

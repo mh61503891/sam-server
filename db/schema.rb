@@ -10,27 +10,113 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161227032531) do
+ActiveRecord::Schema.define(version: 20170101000043) do
 
   create_table "applications", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name"
+    t.string   "name_ruby"
+    t.string   "name_en"
+    t.text     "description"
+    t.integer  "supplier_id"
+    t.integer  "manufacturer_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["description"], name: "index_applications_on_description"
+    t.index ["manufacturer_id"], name: "index_applications_on_manufacturer_id"
+    t.index ["name"], name: "index_applications_on_name"
+    t.index ["name_en"], name: "index_applications_on_name_en"
+    t.index ["name_ruby"], name: "index_applications_on_name_ruby"
+    t.index ["supplier_id"], name: "index_applications_on_supplier_id"
+  end
+
+  create_table "assignments", force: :cascade do |t|
+    t.string   "name",        null: false
+    t.string   "name_ruby"
+    t.string   "name_en"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["description"], name: "index_assignments_on_description"
+    t.index ["name"], name: "index_assignments_on_name", unique: true
+    t.index ["name_en"], name: "index_assignments_on_name_en"
+    t.index ["name_ruby"], name: "index_assignments_on_name_ruby"
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string   "name"
+    t.string   "name_ruby"
+    t.string   "name_en"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["description"], name: "index_companies_on_description"
+    t.index ["name"], name: "index_companies_on_name"
+    t.index ["name_en"], name: "index_companies_on_name_en"
+    t.index ["name_ruby"], name: "index_companies_on_name_ruby"
   end
 
   create_table "computers", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name"
+    t.string   "name_ruby"
+    t.string   "name_en"
+    t.text     "description"
+    t.integer  "supplier_id"
+    t.integer  "manufacturer_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["description"], name: "index_computers_on_description"
+    t.index ["manufacturer_id"], name: "index_computers_on_manufacturer_id"
+    t.index ["name"], name: "index_computers_on_name"
+    t.index ["name_en"], name: "index_computers_on_name_en"
+    t.index ["name_ruby"], name: "index_computers_on_name_ruby"
+    t.index ["supplier_id"], name: "index_computers_on_supplier_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "name"
+    t.string   "name_ruby"
+    t.string   "name_en"
+    t.text     "description"
+    t.string   "ancestry"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["ancestry"], name: "index_groups_on_ancestry"
+    t.index ["description"], name: "index_groups_on_description"
+    t.index ["name"], name: "index_groups_on_name"
+    t.index ["name_en"], name: "index_groups_on_name_en"
+    t.index ["name_ruby"], name: "index_groups_on_name_ruby"
   end
 
   create_table "licenses", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name"
+    t.string   "name_ruby"
+    t.string   "name_en"
+    t.text     "description"
+    t.integer  "supplier_id"
+    t.integer  "manufacturer_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["description"], name: "index_licenses_on_description"
+    t.index ["manufacturer_id"], name: "index_licenses_on_manufacturer_id"
+    t.index ["name"], name: "index_licenses_on_name"
+    t.index ["name_en"], name: "index_licenses_on_name_en"
+    t.index ["name_ruby"], name: "index_licenses_on_name_ruby"
+    t.index ["supplier_id"], name: "index_licenses_on_supplier_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "memberships", id: false, force: :cascade do |t|
+    t.integer  "person_id"
+    t.integer  "group_id"
+    t.integer  "title_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_memberships_on_group_id"
+    t.index ["person_id", "group_id", "title_id"], name: "index_memberships_on_person_id_and_group_id_and_title_id", unique: true
+    t.index ["person_id"], name: "index_memberships_on_person_id"
+    t.index ["title_id"], name: "index_memberships_on_title_id"
+  end
+
+  create_table "people", force: :cascade do |t|
     t.string   "email"
     t.string   "encrypted_password"
     t.datetime "remember_created_at"
@@ -42,74 +128,146 @@ ActiveRecord::Schema.define(version: 20161227032531) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.string   "uid",                             null: false
-    t.integer  "role",                default: 0, null: false
+    t.string   "yp_ldap_uid"
+    t.string   "yp_garoon_uid"
     t.string   "name"
     t.string   "name_ruby"
     t.string   "name_en"
-    t.string   "title"
-    t.string   "title_ruby"
-    t.string   "title_en"
-    t.index ["email"], name: "index_users_on_email"
-    t.index ["name"], name: "index_users_on_name"
-    t.index ["name_en"], name: "index_users_on_name_en"
-    t.index ["name_ruby"], name: "index_users_on_name_ruby"
-    t.index ["title"], name: "index_users_on_title"
-    t.index ["title_en"], name: "index_users_on_title_en"
-    t.index ["title_ruby"], name: "index_users_on_title_ruby"
-    t.index ["uid"], name: "index_users_on_uid"
-    t.index [nil], name: "index_users_on_role,"
-  create_table "yp_garoon_organization_users", id: false, force: :cascade do |t|
-    t.integer  "organization_id", null: false
-    t.integer  "user_id",         null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["organization_id", "user_id"], name: "index_yp_garoon_organizations_users_on_keys", unique: true
-    t.index ["organization_id"], name: "index_yp_garoon_organization_users_on_organization_id"
-    t.index ["user_id"], name: "index_yp_garoon_organization_users_on_user_id"
+    t.text     "description"
+    t.index ["description"], name: "index_people_on_description"
+    t.index ["email"], name: "index_people_on_email"
+    t.index ["name"], name: "index_people_on_name"
+    t.index ["name_en"], name: "index_people_on_name_en"
+    t.index ["name_ruby"], name: "index_people_on_name_ruby"
+    t.index ["uid"], name: "index_people_on_uid", unique: true
+    t.index ["yp_garoon_uid"], name: "index_people_on_yp_garoon_uid"
+    t.index ["yp_ldap_uid"], name: "index_people_on_yp_ldap_uid"
   end
 
-  create_table "yp_garoon_organizations", force: :cascade do |t|
+  create_table "person_applications", force: :cascade do |t|
+    t.integer  "person_id",      null: false
+    t.integer  "application_id", null: false
+    t.integer  "assignment_id",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["application_id"], name: "index_person_applications_on_application_id"
+    t.index ["assignment_id"], name: "index_person_applications_on_assignment_id"
+    t.index ["person_id", "application_id", "assignment_id"], name: "index_person_applications_on_habtm", unique: true
+    t.index ["person_id"], name: "index_person_applications_on_person_id"
+  end
+
+  create_table "person_computers", force: :cascade do |t|
+    t.integer  "person_id",     null: false
+    t.integer  "computer_id",   null: false
+    t.integer  "assignment_id", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["assignment_id"], name: "index_person_computers_on_assignment_id"
+    t.index ["computer_id"], name: "index_person_computers_on_computer_id"
+    t.index ["person_id", "computer_id", "assignment_id"], name: "index_person_computers_on_habtm", unique: true
+    t.index ["person_id"], name: "index_person_computers_on_person_id"
+  end
+
+  create_table "person_licenses", force: :cascade do |t|
+    t.integer  "person_id",     null: false
+    t.integer  "license_id",    null: false
+    t.integer  "assignment_id", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["assignment_id"], name: "index_person_licenses_on_assignment_id"
+    t.index ["license_id"], name: "index_person_licenses_on_license_id"
+    t.index ["person_id", "license_id", "assignment_id"], name: "index_person_licenses_on_habtm", unique: true
+    t.index ["person_id"], name: "index_person_licenses_on_person_id"
+  end
+
+  create_table "titles", force: :cascade do |t|
     t.string   "name"
-    t.string   "version"
+    t.string   "name_ruby"
+    t.string   "name_en"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["description"], name: "index_titles_on_description"
+    t.index ["name"], name: "index_titles_on_name"
+    t.index ["name_en"], name: "index_titles_on_name_en"
+    t.index ["name_ruby"], name: "index_titles_on_name_ruby"
+  end
+
+  create_table "yp_garoon_groups", force: :cascade do |t|
+    t.string   "name"
     t.text     "description"
     t.integer  "order"
+    t.string   "version"
     t.string   "ancestry"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["ancestry"], name: "index_yp_garoon_organizations_on_ancestry"
-    t.index ["description"], name: "index_yp_garoon_organizations_on_description"
-    t.index ["name"], name: "index_yp_garoon_organizations_on_name"
-    t.index ["order"], name: "index_yp_garoon_organizations_on_order"
-    t.index ["version"], name: "index_yp_garoon_organizations_on_version"
+    t.index ["ancestry"], name: "index_yp_garoon_groups_on_ancestry"
+    t.index ["description"], name: "index_yp_garoon_groups_on_description"
+    t.index ["name"], name: "index_yp_garoon_groups_on_name"
+    t.index ["order"], name: "index_yp_garoon_groups_on_order"
+    t.index ["version"], name: "index_yp_garoon_groups_on_version"
   end
 
-  create_table "yp_garoon_users", force: :cascade do |t|
-    t.string   "version"
-    t.integer  "order"
-    t.string   "name"
+  create_table "yp_garoon_memberships", id: false, force: :cascade do |t|
+    t.integer  "person_id",  null: false
+    t.integer  "group_id",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_yp_garoon_memberships_on_group_id"
+    t.index ["person_id", "group_id"], name: "index_yp_garoon_memberships_on_person_id_and_group_id", unique: true
+    t.index ["person_id"], name: "index_yp_garoon_memberships_on_person_id"
+  end
+
+  create_table "yp_garoon_people", force: :cascade do |t|
     t.string   "login_name"
-    t.integer  "status",                  default: 0, null: false
+    t.string   "name"
     t.string   "reading"
-    t.string   "url"
+    t.string   "title"
     t.string   "email"
     t.string   "phone"
-    t.string   "title"
+    t.string   "url"
     t.text     "description"
     t.integer  "primary_organization_id"
+    t.integer  "order"
+    t.integer  "status",                  default: 0, null: false
+    t.string   "version"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.index ["description"], name: "index_yp_garoon_users_on_description"
-    t.index ["email"], name: "index_yp_garoon_users_on_email"
-    t.index ["login_name"], name: "index_yp_garoon_users_on_login_name"
-    t.index ["name"], name: "index_yp_garoon_users_on_name"
-    t.index ["order"], name: "index_yp_garoon_users_on_order"
-    t.index ["phone"], name: "index_yp_garoon_users_on_phone"
-    t.index ["primary_organization_id"], name: "index_yp_garoon_users_on_primary_organization_id"
-    t.index ["reading"], name: "index_yp_garoon_users_on_reading"
-    t.index ["status"], name: "index_yp_garoon_users_on_status"
-    t.index ["title"], name: "index_yp_garoon_users_on_title"
-    t.index ["url"], name: "index_yp_garoon_users_on_url"
-    t.index ["version"], name: "index_yp_garoon_users_on_version"
+    t.index ["description"], name: "index_yp_garoon_people_on_description"
+    t.index ["email"], name: "index_yp_garoon_people_on_email"
+    t.index ["login_name"], name: "index_yp_garoon_people_on_login_name", unique: true
+    t.index ["name"], name: "index_yp_garoon_people_on_name"
+    t.index ["order"], name: "index_yp_garoon_people_on_order"
+    t.index ["phone"], name: "index_yp_garoon_people_on_phone"
+    t.index ["primary_organization_id"], name: "index_yp_garoon_people_on_primary_organization_id"
+    t.index ["reading"], name: "index_yp_garoon_people_on_reading"
+    t.index ["status"], name: "index_yp_garoon_people_on_status"
+    t.index ["title"], name: "index_yp_garoon_people_on_title"
+    t.index ["url"], name: "index_yp_garoon_people_on_url"
+    t.index ["version"], name: "index_yp_garoon_people_on_version"
+  end
+
+  create_table "yp_ldap_people", force: :cascade do |t|
+    t.string   "dn",              null: false
+    t.string   "sn",              null: false
+    t.string   "cn",              null: false
+    t.string   "telephoneNumber"
+    t.string   "description"
+    t.string   "title"
+    t.string   "displayName"
+    t.string   "givenName"
+    t.string   "mail"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["cn"], name: "index_yp_ldap_people_on_cn"
+    t.index ["description"], name: "index_yp_ldap_people_on_description"
+    t.index ["displayName"], name: "index_yp_ldap_people_on_displayName"
+    t.index ["dn"], name: "index_yp_ldap_people_on_dn", unique: true
+    t.index ["givenName"], name: "index_yp_ldap_people_on_givenName"
+    t.index ["mail"], name: "index_yp_ldap_people_on_mail"
+    t.index ["sn"], name: "index_yp_ldap_people_on_sn"
+    t.index ["telephoneNumber"], name: "index_yp_ldap_people_on_telephoneNumber"
+    t.index ["title"], name: "index_yp_ldap_people_on_title"
   end
 
 end

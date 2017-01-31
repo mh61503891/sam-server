@@ -1,4 +1,16 @@
 en:
+  helpers:
+    submit:
+      user:
+        create: 'www'
+        update: 'www'
+  user:
+    new:
+      sign_in: 'ww'
+      form:
+        sign_in: 'ww'
+        submit: 'ww'
+        commit: ssss
   people:
     index:
       uid: UID
@@ -6,20 +18,44 @@ en:
       name: Name
       name_ruby: Name (ruby)
       name_en: Name (en)
-      title: Title
-      title_ruby: Title (ruby)
-      title_en: Title (en)
       description: Description
       people: People
+  computers:
+    index:
+      name: Name
+      name_ruby: Name (ruby)
+      name_en: Name (en)
+      description: Description
+      computers: Computers
+  activerecord:
+    form:
+      sign_in: 'ww'
+      submit: 'ww'
+      commit: ssss
+    attributes:
+      user:
+        submit: a
+        commit: ssss
+        uid: ID
+        sign_in: Sign in
+        current_password: Current password
+        email: Email
+        password: Password
+        password_confirmation: Password confirmation
+        remember_me: Remember me
+        reset_password_token: Reset password token
+        unlock_token: Unlock token
   devise:
     sessions:
       new:
-        login:
+        sign_in: Sign in
   layouts:
     application:
       title: Software License Manager
   shared:
-    navbar:
+    navbar_public:
+      title: Software License Manager
+    navbar_private:
       applications: Applications
       computers: Computers
       licenses: Licenses
@@ -27,4 +63,4 @@ en:
       search: Search
       settings: Settings
       title: Software License Manager
-      users: Users
+      people: People
