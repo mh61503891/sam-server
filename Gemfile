@@ -15,7 +15,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.3.7'
 gem 'font-awesome-rails'
 gem 'font-ionicons-rails'
 gem 'underscore-string-rails'

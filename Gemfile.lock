@@ -312,7 +312,7 @@ DEPENDENCIES
   annotate
   attr_encrypted (~> 3.0.0)
   awesome_print
-  bootstrap-sass
+  bootstrap-sass (~> 3.3.7)
   bullet
   byebug
   coffee-rails (~> 4.2)
