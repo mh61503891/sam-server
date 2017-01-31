@@ -1,0 +1,4 @@
+<% 100.times do |n| %>
+department_<%= n %>:
+  name: <%= "#{Faker::Company.name}_#{n}" %>
+<% end %>
