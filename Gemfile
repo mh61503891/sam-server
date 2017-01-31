@@ -29,12 +29,15 @@ gem 'garoon-cat'
 gem 'kaminari', '~> 1.0'
 gem 'faker'
 
-group :production do
+group :production, :development do
   gem 'pg'
 end
 
 group :development, :test do
   gem 'sqlite3'
+end
+
+group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rack-mini-profiler', require:false
 end
