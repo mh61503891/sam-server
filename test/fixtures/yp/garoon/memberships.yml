@@ -1,0 +1,7 @@
+<% (0..99).each do |person_n| %>
+<% (0..99).to_a.sample(Random.rand(0..9)).each do |group_n| %>
+yp_garoon_membership_<%= group_n %>_<%= person_n %>:
+  group: yp_garoon_group_<%= group_n %>
+  person: yp_garoon_person_<%= person_n %>
+<% end %>
+<% end %>

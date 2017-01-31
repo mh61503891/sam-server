@@ -1,9 +1,9 @@
 <% (0..99).each do |n| %>
-yp_garoon_user_<%= n %>:
+yp_garoon_person_<%= n %>:
   version: <%= Time.now.to_i.to_s %>
   order: <%= Faker::Number.between(1, 2147483647) %>
   name: <%= Faker::Name.name %>
-  login_name: <%= Faker::Internet.user_name %>
+  login_name: <%= "#{Faker::Internet.user_name}_#{n}" %>
   status: <%= Faker::Number.between(0, 2) %>
   reading: <%= Faker::Name.name %>
   url: <%= Faker::Internet.url('example.com') %>
@@ -11,5 +11,5 @@ yp_garoon_user_<%= n %>:
   phone: <%= Faker::PhoneNumber.phone_number %>
   title: <%= Faker::Name.title %>
   description: <%= Faker::Hacker.say_something_smart %>
-  primary_organization_id: <%= ActiveRecord::FixtureSet.identify("yp_garoon_organization_#{Random.rand(0..99)}") %>
+  primary_group_id: <%= ActiveRecord::FixtureSet.identify("yp_garoon_group_#{Random.rand(0..99)}") %>
 <% end %>

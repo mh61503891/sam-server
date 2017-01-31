@@ -227,19 +227,19 @@ ActiveRecord::Schema.define(version: 20170101000043) do
     t.string   "phone"
     t.string   "url"
     t.text     "description"
-    t.integer  "primary_organization_id"
+    t.integer  "primary_group_id"
     t.integer  "order"
-    t.integer  "status",                  default: 0, null: false
+    t.integer  "status",           default: 0, null: false
     t.string   "version"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.index ["description"], name: "index_yp_garoon_people_on_description"
     t.index ["email"], name: "index_yp_garoon_people_on_email"
     t.index ["login_name"], name: "index_yp_garoon_people_on_login_name", unique: true
     t.index ["name"], name: "index_yp_garoon_people_on_name"
     t.index ["order"], name: "index_yp_garoon_people_on_order"
     t.index ["phone"], name: "index_yp_garoon_people_on_phone"
-    t.index ["primary_organization_id"], name: "index_yp_garoon_people_on_primary_organization_id"
+    t.index ["primary_group_id"], name: "index_yp_garoon_people_on_primary_group_id"
     t.index ["reading"], name: "index_yp_garoon_people_on_reading"
     t.index ["status"], name: "index_yp_garoon_people_on_status"
     t.index ["title"], name: "index_yp_garoon_people_on_title"

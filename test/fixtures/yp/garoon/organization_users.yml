@@ -1,7 +1,0 @@
-<% (0..99).each do |user_n| %>
-<% (0..99).to_a.sample(Random.rand(0..9)).each do |organization_n| %>
-yp_garoon_organization_user_<%= organization_n %>_<%= user_n %>:
-  organization: yp_garoon_organization_<%= organization_n %>
-  user: yp_garoon_user_<%= user_n %>
-<% end %>
-<% end %>

@@ -1,4 +1,4 @@
 <% 100.times do |n| %>
 title_<%= n %>:
-  name: <%= "#{Forgery('name').job_title}_#{n}" %>
+  name: <%= "#{Faker::Name.title}_#{n}" %>
 <% end %>

@@ -10,14 +10,14 @@ class CreateYpGaroonPeople < ActiveRecord::Migration[5.0]
       t.string :phone
       t.string :url
       t.text :description
-      t.integer :primary_organization_id
+      t.integer :primary_group_id
       t.integer :order
       t.integer :status, default:0, null:false
       t.string :version
       t.timestamps
     end
     add_index :yp_garoon_people, :login_name, unique:true
-    %i(name reading title email phone url description primary_organization_id order status version).each do |column|
+    %i(name reading title email phone url description primary_group_id order status version).each do |column|
       add_index :yp_garoon_people, column
     end
   end
