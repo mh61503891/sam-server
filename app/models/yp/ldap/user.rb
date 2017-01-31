@@ -1,2 +1,2 @@
-class YP::LDAP::User < ApplicationRecord
+class Yp::Ldap::User < ApplicationRecord
 end
