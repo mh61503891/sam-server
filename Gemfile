@@ -27,6 +27,7 @@ gem 'ancestry'
 gem 'attr_encrypted', '~> 3.0.0'
 gem 'garoon-cat'
 gem 'kaminari', '~> 1.0'
+gem 'faker'
 
 group :production do
   gem 'pg'
@@ -35,7 +36,6 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug', platform: :mri
-  gem 'faker'
   gem 'ffaker'
   gem 'forgery'
   gem 'rack-mini-profiler', require:false
