@@ -5,5 +5,5 @@ person_<%= n %>:
   name: <%= Faker::Name.name %>
   name_ruby: <%= Faker::Name.name %>
   name_en: <%= Faker::Name.name %>
-  description: <%= Faker::Hacker.say_something_smart %>
+  description: <%= Faker::Lorem.paragraph %>
 <% end %>
