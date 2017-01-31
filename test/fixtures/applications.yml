@@ -1,4 +1,7 @@
 <% 100.times do |n| %>
 application_<%= n %>:
   name: <%= Faker::App.name %>
+  name_ruby: <%= Faker::App.name %>
+  name_en: <%= Faker::App.name %>
+  description: <%= Faker::Lorem.paragraph %>
 <% end %>
