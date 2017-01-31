@@ -1,0 +1,10 @@
+<% 100.times do |person_n| %>
+<% Random.rand(0..10).times do |application_n| %>
+<% Random.rand(0..10).times do |assignment_n| %>
+person_application_<%= person_n %>_<%= application_n %>_<%= assignment_n %>:
+  person: person_<%= person_n %>
+  application: application_<%= application_n %>
+  assignment: assignment_<%= assignment_n %>
+<% end %>
+<% end %>
+<% end %>
