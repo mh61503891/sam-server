@@ -3,7 +3,7 @@
     <div class="col-sm-6 col-sm-offset-3">
       <%= render 'shared/notice' %>
       <%= render 'shared/alert' %>
-      <h2><%= t('.login') %></h2>
+      <h2><%= t('.sign_in') %></h2>
       <%= form_for(resource, as:resource_name, url:session_path(resource_name)) do |f| %>
       <div class="form-group row">
         <%= f.label :uid, class:'col-sm-3 col-form-label' %>
@@ -17,8 +17,15 @@
           <%= f.password_field :password, autocomplete:'off', class:'form-control' %>
         </div>
       </div>
-      <hr>
-      <%= f.submit :login, class:'btn btn-primary' %>
+      <% if devise_mapping.rememberable? %>
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      </div>
+      <% end %>
+      <%= f.submit t('.sign_in'), class:'btn btn-primary' %>
       <% end %>
     </div>
   </div>

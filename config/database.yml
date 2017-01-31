@@ -8,3 +8,8 @@ test:
 
 production:
   url: <%= ENV['DATABASE_URL'] %>
+
+garoon:
+  adapter: sqlite3
+  database: db/garoon.sqlite3
+  # database: ~/garoon.sqlite3

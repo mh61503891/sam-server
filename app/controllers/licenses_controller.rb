@@ -1,4 +1,5 @@
 class LicensesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_license, only: [:show, :edit, :update, :destroy]
 
   # GET /licenses

@@ -10,7 +10,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track':'reload' %>
   </head>
   <body>
-    <%= render 'shared/navbar' %>
+    <%= render("shared/navbar_#{ person_signed_in? ? 'private' : 'private' }") %>
     <%= yield %>
   </body>
 </html>

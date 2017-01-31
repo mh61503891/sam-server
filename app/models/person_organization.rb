@@ -1,0 +1,2 @@
+class PersonOrganization < ApplicationRecord
+end

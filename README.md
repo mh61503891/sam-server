@@ -26,3 +26,13 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+TODO
+
+* 氏名の多言語化
+* i18n
+
+
+
+bundle exec i18n-tasks health
+bundle exec i18n-tasks health -f yaml
