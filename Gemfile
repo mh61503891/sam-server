@@ -27,10 +27,7 @@ gem 'ancestry'
 gem 'attr_encrypted', '~> 3.0.0'
 gem 'garoon-cat'
 gem 'kaminari', '~> 1.0'
-
 gem 'faker'
-gem 'ffaker'
-gem 'forgery'
 
 group :production do
   gem 'pg'
