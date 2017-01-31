@@ -20,6 +20,10 @@ en:
       name_en: Name (en)
       description: Description
       people: People
+    show:
+      computers: Computers
+      applications: Applications
+      licenses: Licenses
   computers:
     index:
       name: Name
@@ -27,6 +31,20 @@ en:
       name_en: Name (en)
       description: Description
       computers: Computers
+  applications:
+    index:
+      name: Name
+      name_ruby: Name (ruby)
+      name_en: Name (en)
+      description: Description
+      applications: Applications
+  licenses:
+    index:
+      name: Name
+      name_ruby: Name (ruby)
+      name_en: Name (en)
+      description: Description
+      licenses: Licenses
   activerecord:
     form:
       sign_in: 'ww'
