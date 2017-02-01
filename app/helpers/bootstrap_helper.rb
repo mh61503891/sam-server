@@ -1,7 +1,8 @@
 module BootstrapHelper
 
-  def bs_badge(number)
-    content_tag(:span, number, class:'badge')
+  def bs_badge(*args)
+    params = args.first || {}
+    content_tag(:span, "#{params[:text]}", class:"badge #{params[:class]}")
   end
 
 end
