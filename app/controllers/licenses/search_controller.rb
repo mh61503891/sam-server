@@ -1,17 +1,37 @@
 class Licenses::SearchController < ApplicationController
 
   def index
-    search = params['search']
-    limit = params['limit']
-    offset = params['offset']
-    @count = License.search(search).count
-    @licenses = License.search(search).order([sort, order].join(' ')).limit(limit).offset(offset)
+    if person_id.present?
+      relation = License.includes(:people).where(people:{id:person_id.to_i}).search(search)
+      @count = relation.count
+      @licenses = relation.order([sort, order].join(' ')).limit(limit).offset(offset)
+    else
+      relation = License.search(search)
+      @count = relation.count
+      @licenses = relation.order([sort, order].join(' ')).limit(limit).offset(offset)
+    end
   end
 
   private
 
+  def person_id
+    params[:person_id]
+  end
+
+  def search
+    params[:search]
+  end
+
+  def limit
+    params[:limit]
+  end
+
+  def offset
+    params[:offset]
+  end
+
   def sort
-    License.attribute_names.include?(params[:sort]) ? params[:sort] : 'id'
+    'licenses.' + (License.attribute_names.include?(params[:sort]) ? params[:sort] : 'id')
   end
 
   def order

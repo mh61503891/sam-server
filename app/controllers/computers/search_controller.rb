@@ -6,18 +6,20 @@ class Computers::SearchController < ApplicationController
       @count = relation.count
       @computers = relation.order([sort, order].join(' ')).limit(limit).offset(offset)
     else
-      @computers = Computer.search(search).order([sort, order].join(' ')).limit(limit).offset(offset)
+      relation = Computer.search(search)
+      @count = relation.count
+      @computers = relation.order([sort, order].join(' ')).limit(limit).offset(offset)
     end
   end
 
   private
 
-  def search
-    params[:search]
-  end
-
   def person_id
     params[:person_id]
+  end
+
+  def search
+    params[:search]
   end
 
   def sort
