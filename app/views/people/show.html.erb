@@ -4,6 +4,14 @@
   <h2><%= icon_person(text:@person.name) %></h2>
   <ul role="tablist" class="nav nav-tabs">
     <li role="presentation" class="active">
+      <%= link_to("#information", 'aria-controls':'information', 'role':'tab', 'data-toggle':'tab') do %>
+      <%= icon_information %>
+      <span class="hidden-xs">
+        <%= t('.information') %>
+      </span>
+      <% end %>
+    </li>
+    <li role="presentation">
       <%= link_to("#computers", 'aria-controls':'computers', 'role':'tab', 'data-toggle':'tab') do %>
       <%= icon_computers %>
       <span class="hidden-xs">
@@ -32,7 +40,45 @@
     </li>
   </ul>
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane fade in active" id="computers">
+    <div role="tabpanel" class="tab-pane fade in active" id="information">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= t('.details') %></h3>
+        </div>
+        <table class="table">
+          <% %i(id uid name name_ruby name_en).each do |name| %>
+          <tr>
+            <th><%= t(".#{name}") %></th>
+            <td><%= @person[name] %></td>
+          </tr>
+          <% end %>
+          <tr>
+            <th><%= t(".email") %></th>
+            <td><%= mail_to @person.email, @person.email %></td>
+          </tr>
+          <% %i(description updated_at created_at).each do |name| %>
+          <tr>
+            <th><%= t(".#{name}") %></th>
+            <td><%= @person[name] %></td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= t('.activities') %></h3>
+        </div>
+        <table class="table">
+          <% %i(sign_in_count current_sign_in_at last_sign_in_at current_sign_in_ip last_sign_in_ip).each do |name| %>
+          <tr>
+            <th><%= t(".#{name}") %></th>
+            <td><%= @person[name] %></td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane fade" id="computers">
       <table
         data-toggle="table"
         data-search="true"

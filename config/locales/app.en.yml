@@ -22,13 +22,27 @@ en:
       description: Description
       people: People
     show:
+      information: Information
       computers: Computers
       applications: Applications
       licenses: Licenses
       name: Name
       name_ruby: Name (ruby)
       name_en: Name (en)
+      email: E-mail
       description: Description
+      details: Details
+      activities: Activities
+      id: System ID
+      uid: UID
+      updated_at: Updated at
+      created_at: Created at
+      sign_in_count: Signin count
+      sign_in_at: Signin at
+      last_sign_in_at: Last sign in at
+      last_sign_in_ip: Last sign in IP
+      current_sign_in_at: Current sign in at
+      current_sign_in_ip: Current sign in IP
   computers:
     index:
       name: Name
