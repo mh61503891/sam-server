@@ -1,5 +1,9 @@
 module IconHelper
 
+  def icon_person(options = {})
+    font_awesome_icon('user', options)
+  end
+
   def icon_people(options = {})
     font_awesome_icon('users', options)
   end
