@@ -13,3 +13,7 @@
     "<a href=\"mailto:#{row.email}\">#{row.email}</a>"
   else
     ""
+
+$ ->
+  $('table[data-toggle="table"]').on 'load-success.bs.table', (event, object) ->
+    $(".badge.#{object.name}.count").html(object.total)

@@ -9,7 +9,17 @@ Rails.application.routes.draw do
   namespace :people do
     resources :search, only:[:index]
   end
-  resources :people, only:[:index, :show]
+  resources :people, only:[:index, :show], shallow:true do
+    namespace :computers do
+      resources :search, only:[:index]
+    end
+    namespace :applications do
+      resources :search, only:[:index]
+    end
+    namespace :licenses do
+      resources :search, only:[:index]
+    end
+  end
   namespace :computers do
     resources :search, only:[:index]
   end

@@ -1,5 +1,111 @@
 <div class="container">
   <%= render 'shared/notice' %>
   <%= render 'shared/alert' %>
-  <h1><%= @person.name %></h1>
+  <h2><%= icon_person(text:@person.name) %></h2>
+  <ul role="tablist" class="nav nav-tabs">
+    <li role="presentation" class="active">
+      <%= link_to("#computers", 'aria-controls':'computers', 'role':'tab', 'data-toggle':'tab') do %>
+      <%= icon_computers %>
+      <span class="hidden-xs">
+        <%= t('.computers') %>
+      </span>
+      <%= bs_badge(class:'computers count') %>
+      <% end %>
+    </li>
+    <li role="presentation">
+      <%= link_to("#applications", 'aria-controls':'applications', 'role':'tab', 'data-toggle':'tab') do %>
+      <%= icon_applications %>
+      <span class="hidden-xs">
+        <%= t('.applications') %>
+      </span>
+      <%= bs_badge(class:'applications count') %>
+      <% end %>
+    </li>
+    <li role="presentation">
+      <%= link_to("#licenses", 'aria-controls':'licenses', 'role':'tab', 'data-toggle':'tab') do %>
+      <%= icon_licenses %>
+      <span class="hidden-xs">
+        <%= t('.licenses') %>
+      </span>
+      <%= bs_badge(class:'licenses count') %>
+      <% end %>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in active" id="computers">
+      <table
+        data-toggle="table"
+        data-search="true"
+        data-show-columns="true"
+        data-mobile-responsive="true"
+        data-classes="table table-no-bordered table-hover"
+        data-toolbar="#toolbar"
+        data-url="<%= url_for(person_computers_search_index_path(person_id:@person.id,format:'json')) %>"
+        data-side-pagination="server"
+        data-pagination="true"
+        data-show-refresh="true"
+        data-page-list="[10,100,1000,10000]">
+        <thead>
+          <tr>
+            <th data-checkbox="true"></th>
+            <th data-field="id" data-sortable="true" data-visible="false"><%= t(".id") %></th>
+            <th data-field="name" data-sortable="true" data-formatter="link_to_url_with_name"><%= t(".name") %></th>
+            <th data-field="name_ruby" data-sortable="true"><%= t(".name_ruby") %></th>
+            <th data-field="name_en" data-sortable="true"><%= t(".name_en") %></th>
+            <th data-field="description" data-sortable="true"><%= t(".description") %></th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div role="tabpanel" class="tab-pane fade" id="applications">
+      <table
+        data-toggle="table"
+        data-search="true"
+        data-show-columns="true"
+        data-mobile-responsive="true"
+        data-classes="table table-no-bordered table-hover"
+        data-toolbar="#toolbar"
+        data-url="<%= url_for(person_applications_search_index_path(person_id:@person.id, format:'json')) %>"
+        data-side-pagination="server"
+        data-pagination="true"
+        data-show-refresh="true"
+        data-page-list="[10,100,1000,10000]">
+        <thead>
+          <tr>
+            <th data-checkbox="true"></th>
+            <th data-field="id" data-sortable="true" data-visible="false"><%= t(".id") %></th>
+            <th data-field="name" data-sortable="true" data-formatter="link_to_url_with_name"><%= t(".name") %></th>
+            <th data-field="name_ruby" data-sortable="true"><%= t(".name_ruby") %></th>
+            <th data-field="name_en" data-sortable="true"><%= t(".name_en") %></th>
+            <th data-field="description" data-sortable="true"><%= t(".description") %></th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div role="tabpanel" class="tab-pane fade" id="licenses">
+      <table
+        data-toggle="table"
+        data-search="true"
+        data-show-columns="true"
+        data-mobile-responsive="true"
+        data-classes="table table-no-bordered table-hover"
+        data-toolbar="#toolbar"
+        data-url="<%= url_for(person_licenses_search_index_path(person_id:@person.id, format:'json')) %>"
+        data-side-pagination="server"
+        data-pagination="true"
+        data-show-refresh="true"
+        data-page-list="[10,100,1000,10000]">
+        <thead>
+          <tr>
+            <th data-checkbox="true"></th>
+            <th data-field="id" data-sortable="true" data-visible="false"><%= t(".id") %></th>
+            <th data-field="name" data-sortable="true" data-formatter="link_to_url_with_name"><%= t(".name") %></th>
+            <th data-field="name_ruby" data-sortable="true"><%= t(".name_ruby") %></th>
+            <th data-field="name_en" data-sortable="true"><%= t(".name_en") %></th>
+            <th data-field="description" data-sortable="true"><%= t(".description") %></th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
 </div>
