@@ -1,15 +1,13 @@
 <div class="container">
   <%= render 'shared/notice' %>
   <%= render 'shared/alert' %>
-  <h1><%= t('.people') %></h1>
+  <h2>
+    <%= icon_people(text:t('.people')) %>
+    <%= bs_badge(@count) %>
+  </h2>
   <div class="alt-table-responsive">
     <div id="toolbar">
-      <div class="form-inline" role="form">
-        <button id="remove" class="btn btn-danger" disabled>
-          <i class="glyphicon glyphicon-remove"></i>
-          Delete
-        </button>
-      </div>
+      <div class="form-inline" role="form"></div>
     </div>
     <table
       data-toggle="table"
@@ -26,12 +24,16 @@
       <thead>
         <tr>
           <th data-checkbox="true"></th>
+          <th data-field="id" data-sortable="true" data-visible="false"><%= t(".id") %></th>
           <th data-field="name" data-sortable="true" data-formatter="link_to_url_with_name"><%= t(".name") %></th>
           <th data-field="name_ruby" data-sortable="true"><%= t(".name_ruby") %></th>
           <th data-field="name_en" data-sortable="true"><%= t(".name_en") %></th>
           <th data-field="uid" data-sortable="true"><%= t(".uid") %></th>
           <th data-field="email" data-sortable="true" data-formatter="mail_to"><%= t(".email") %></th>
-          <th data-field="description" data-sortable="true"><%= t(".description") %></th>
+          <th data-field="computers_count" data-sortable="true"><%= icon_computers %></th>
+          <th data-field="applications_count" data-sortable="true"><%= icon_applications %></th>
+          <th data-field="licenses_count" data-sortable="true"><%= icon_licenses %></th>
+          <th data-field="description" data-sortable="true" data-visible="false"><%= t(".description") %></th>
         </tr>
       </thead>
     </table>
