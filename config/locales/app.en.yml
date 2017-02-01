@@ -13,6 +13,7 @@ en:
         commit: ssss
   people:
     index:
+      id: System ID
       uid: UID
       email: E-mail
       name: Name
@@ -24,6 +25,10 @@ en:
       computers: Computers
       applications: Applications
       licenses: Licenses
+      name: Name
+      name_ruby: Name (ruby)
+      name_en: Name (en)
+      description: Description
   computers:
     index:
       name: Name
