@@ -17,3 +17,15 @@
 $ ->
   $('table[data-toggle="table"]').on 'load-success.bs.table', (event, object) ->
     $(".badge.#{object.name}.count").html(object.total)
+
+  # tabs
+  if $('[role=tablist]').length == 1
+    hash = window.location.hash
+    if hash
+      $("[role=tab][href=\"#{hash}\"]").tab('show')
+  $('[role=tab]').on 'shown.bs.tab', ->
+    pos = $('body').scrollTop()
+    hash = $(this).attr('href')
+    if hash
+      window.location.hash = hash
+      $('body').scrollTop pos
