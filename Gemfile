@@ -59,6 +59,7 @@ group :development do
   gem 'i18n-tasks', require:false
   gem 'devise-i18n'
   gem 'guard-livereload', require:false
+  gem 'dotenv-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
