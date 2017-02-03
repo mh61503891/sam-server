@@ -5,4 +5,5 @@ class Computer < ApplicationRecord
   end
   has_many :person_computers
   has_many :people, through: :person_computers
+  belongs_to :supplier, class_name:'Company'
 end

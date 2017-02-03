@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170101000043) do
+ActiveRecord::Schema.define(version: 20170101000052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "application_assignments", force: :cascade do |t|
+    t.string   "name",        null: false
+    t.string   "name_ruby"
+    t.string   "name_en"
+    t.text     "description"
+    t.string   "color"
+    t.integer  "order"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["color"], name: "index_application_assignments_on_color", using: :btree
+    t.index ["description"], name: "index_application_assignments_on_description", using: :btree
+    t.index ["name"], name: "index_application_assignments_on_name", unique: true, using: :btree
+    t.index ["name_en"], name: "index_application_assignments_on_name_en", using: :btree
+    t.index ["name_ruby"], name: "index_application_assignments_on_name_ruby", using: :btree
+    t.index ["order"], name: "index_application_assignments_on_order", using: :btree
+  end
 
   create_table "applications", force: :cascade do |t|
     t.string   "name"
@@ -32,19 +49,6 @@ ActiveRecord::Schema.define(version: 20170101000043) do
     t.index ["supplier_id"], name: "index_applications_on_supplier_id", using: :btree
   end
 
-  create_table "assignments", force: :cascade do |t|
-    t.string   "name",        null: false
-    t.string   "name_ruby"
-    t.string   "name_en"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["description"], name: "index_assignments_on_description", using: :btree
-    t.index ["name"], name: "index_assignments_on_name", unique: true, using: :btree
-    t.index ["name_en"], name: "index_assignments_on_name_en", using: :btree
-    t.index ["name_ruby"], name: "index_assignments_on_name_ruby", using: :btree
-  end
-
   create_table "companies", force: :cascade do |t|
     t.string   "name"
     t.string   "name_ruby"
@@ -56,6 +60,23 @@ ActiveRecord::Schema.define(version: 20170101000043) do
     t.index ["name"], name: "index_companies_on_name", using: :btree
     t.index ["name_en"], name: "index_companies_on_name_en", using: :btree
     t.index ["name_ruby"], name: "index_companies_on_name_ruby", using: :btree
+  end
+
+  create_table "computer_assignments", force: :cascade do |t|
+    t.string   "name",        null: false
+    t.string   "name_ruby"
+    t.string   "name_en"
+    t.text     "description"
+    t.string   "color"
+    t.integer  "order"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["color"], name: "index_computer_assignments_on_color", using: :btree
+    t.index ["description"], name: "index_computer_assignments_on_description", using: :btree
+    t.index ["name"], name: "index_computer_assignments_on_name", unique: true, using: :btree
+    t.index ["name_en"], name: "index_computer_assignments_on_name_en", using: :btree
+    t.index ["name_ruby"], name: "index_computer_assignments_on_name_ruby", using: :btree
+    t.index ["order"], name: "index_computer_assignments_on_order", using: :btree
   end
 
   create_table "computers", force: :cascade do |t|
@@ -88,6 +109,23 @@ ActiveRecord::Schema.define(version: 20170101000043) do
     t.index ["name"], name: "index_groups_on_name", using: :btree
     t.index ["name_en"], name: "index_groups_on_name_en", using: :btree
     t.index ["name_ruby"], name: "index_groups_on_name_ruby", using: :btree
+  end
+
+  create_table "license_assignments", force: :cascade do |t|
+    t.string   "name",        null: false
+    t.string   "name_ruby"
+    t.string   "name_en"
+    t.text     "description"
+    t.string   "color"
+    t.integer  "order"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["color"], name: "index_license_assignments_on_color", using: :btree
+    t.index ["description"], name: "index_license_assignments_on_description", using: :btree
+    t.index ["name"], name: "index_license_assignments_on_name", unique: true, using: :btree
+    t.index ["name_en"], name: "index_license_assignments_on_name_en", using: :btree
+    t.index ["name_ruby"], name: "index_license_assignments_on_name_ruby", using: :btree
+    t.index ["order"], name: "index_license_assignments_on_order", using: :btree
   end
 
   create_table "licenses", force: :cascade do |t|
@@ -148,38 +186,38 @@ ActiveRecord::Schema.define(version: 20170101000043) do
   end
 
   create_table "person_applications", force: :cascade do |t|
-    t.integer  "person_id",      null: false
-    t.integer  "application_id", null: false
-    t.integer  "assignment_id",  null: false
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.integer  "person_id",                 null: false
+    t.integer  "application_id",            null: false
+    t.integer  "application_assignment_id", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["application_assignment_id"], name: "index_person_applications_on_application_assignment_id", using: :btree
     t.index ["application_id"], name: "index_person_applications_on_application_id", using: :btree
-    t.index ["assignment_id"], name: "index_person_applications_on_assignment_id", using: :btree
-    t.index ["person_id", "application_id", "assignment_id"], name: "index_person_applications_on_habtm", unique: true, using: :btree
+    t.index ["person_id", "application_id", "application_assignment_id"], name: "index_person_applications_on_habtm", unique: true, using: :btree
     t.index ["person_id"], name: "index_person_applications_on_person_id", using: :btree
   end
 
   create_table "person_computers", force: :cascade do |t|
-    t.integer  "person_id",     null: false
-    t.integer  "computer_id",   null: false
-    t.integer  "assignment_id", null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["assignment_id"], name: "index_person_computers_on_assignment_id", using: :btree
+    t.integer  "person_id",              null: false
+    t.integer  "computer_id",            null: false
+    t.integer  "computer_assignment_id", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["computer_assignment_id"], name: "index_person_computers_on_computer_assignment_id", using: :btree
     t.index ["computer_id"], name: "index_person_computers_on_computer_id", using: :btree
-    t.index ["person_id", "computer_id", "assignment_id"], name: "index_person_computers_on_habtm", unique: true, using: :btree
+    t.index ["person_id", "computer_id", "computer_assignment_id"], name: "index_person_computers_on_habtm", unique: true, using: :btree
     t.index ["person_id"], name: "index_person_computers_on_person_id", using: :btree
   end
 
   create_table "person_licenses", force: :cascade do |t|
-    t.integer  "person_id",     null: false
-    t.integer  "license_id",    null: false
-    t.integer  "assignment_id", null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["assignment_id"], name: "index_person_licenses_on_assignment_id", using: :btree
+    t.integer  "person_id",             null: false
+    t.integer  "license_id",            null: false
+    t.integer  "license_assignment_id", null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["license_assignment_id"], name: "index_person_licenses_on_license_assignment_id", using: :btree
     t.index ["license_id"], name: "index_person_licenses_on_license_id", using: :btree
-    t.index ["person_id", "license_id", "assignment_id"], name: "index_person_licenses_on_habtm", unique: true, using: :btree
+    t.index ["person_id", "license_id", "license_assignment_id"], name: "index_person_licenses_on_habtm", unique: true, using: :btree
     t.index ["person_id"], name: "index_person_licenses_on_person_id", using: :btree
   end
 
@@ -276,13 +314,13 @@ ActiveRecord::Schema.define(version: 20170101000043) do
   add_foreign_key "memberships", "groups"
   add_foreign_key "memberships", "people"
   add_foreign_key "memberships", "titles"
+  add_foreign_key "person_applications", "application_assignments"
   add_foreign_key "person_applications", "applications"
-  add_foreign_key "person_applications", "assignments"
   add_foreign_key "person_applications", "people"
-  add_foreign_key "person_computers", "assignments"
+  add_foreign_key "person_computers", "computer_assignments"
   add_foreign_key "person_computers", "computers"
   add_foreign_key "person_computers", "people"
-  add_foreign_key "person_licenses", "assignments"
+  add_foreign_key "person_licenses", "license_assignments"
   add_foreign_key "person_licenses", "licenses"
   add_foreign_key "person_licenses", "people"
   add_foreign_key "yp_garoon_memberships", "yp_garoon_groups"

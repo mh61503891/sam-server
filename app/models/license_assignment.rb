@@ -1,0 +1,2 @@
+class LicenseAssignment < ApplicationRecord
+end

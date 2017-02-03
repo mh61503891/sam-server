@@ -1,0 +1,2 @@
+class ApplicationAssignment < ApplicationRecord
+end

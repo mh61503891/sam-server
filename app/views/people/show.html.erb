@@ -98,6 +98,9 @@
             <th data-field="name" data-sortable="true" data-formatter="link_to_url_with_name"><%= t(".name") %></th>
             <th data-field="name_ruby" data-sortable="true"><%= t(".name_ruby") %></th>
             <th data-field="name_en" data-sortable="true"><%= t(".name_en") %></th>
+            <% ComputerAssignment.includes(:person_computers).where(person_computers:{person_id:@person.id}).order(:order).each do |a| %>
+            <th data-assigmnment-id="<%= a.id %>" data-field="assignments" data-sortable="true" data-formatter="icon_for_assignment"><%= a.name %></th>
+            <% end %>
             <th data-field="description" data-sortable="true"><%= t(".description") %></th>
           </tr>
         </thead>

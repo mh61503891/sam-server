@@ -1,4 +1,0 @@
-<% 100.times do |n| %>
-assignment_<%= n %>:
-  name: <%= "#{Faker::Name.name}_#{n}" %>
-<% end %>

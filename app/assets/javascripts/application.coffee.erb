@@ -14,6 +14,19 @@
   else
     ""
 
+@link_to_assignments = (value, row) ->
+  html = ''
+  for a in row.assignments
+    html = html + "<span class=\"label label-default\" style=\"background-color:#{a.color};\">#{a.name}</span>\n"
+  return html
+
+@icon_for_assignment = (value, row) ->
+  id = $(this).attr('assigmnmentId')
+  if (item for item in value when item.id is id).length
+    '<i class="fa fa-check" aria-hidden="true"></i>'
+  else
+    ''
+
 $ ->
   $('table[data-toggle="table"]').on 'load-success.bs.table', (event, object) ->
     $(".badge.#{object.name}.count").html(object.total)

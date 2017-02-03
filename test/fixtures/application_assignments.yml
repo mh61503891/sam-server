@@ -1,0 +1,14 @@
+application_assignment_0:
+  name: Administrator
+  color: '#d9534f'
+  order: 0
+
+application_assignment_1:
+  name: Purchaser
+  color: '#428bca'
+  order: 10
+
+application_assignment_2:
+  name: User
+  color: '#5cb85c'
+  order: 20

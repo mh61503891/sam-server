@@ -1,10 +1,10 @@
 <% 100.times do |person_n| %>
 <% Random.rand(0..10).times do |license_n| %>
-<% Random.rand(0..10).times do |assignment_n| %>
+<% Random.rand(0..3).times do |assignment_n| %>
 person_license_<%= person_n %>_<%= license_n %>_<%= assignment_n %>:
   person_id: <%= ActiveRecord::FixtureSet.identify("person_#{person_n}") %>
   license_id: <%= ActiveRecord::FixtureSet.identify("license_#{license_n}") %>
-  assignment_id: <%= ActiveRecord::FixtureSet.identify("assignment_#{assignment_n}") %>
+  license_assignment_id: <%= ActiveRecord::FixtureSet.identify("license_assignment_#{assignment_n}") %>
 <% end %>
 <% end %>
 <% end %>

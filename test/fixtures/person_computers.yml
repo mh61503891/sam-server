@@ -1,10 +1,10 @@
 <% 100.times do |person_n| %>
 <% Random.rand(0..10).times do |computer_n| %>
-<% Random.rand(0..10).times do |assignment_n| %>
+<% Random.rand(0..3).times do |assignment_n| %>
 person_computer_<%= person_n %>_<%= computer_n %>_<%= assignment_n %>:
   person_id: <%= ActiveRecord::FixtureSet.identify("person_#{person_n}") %>
   computer_id: <%= ActiveRecord::FixtureSet.identify("computer_#{computer_n}") %>
-  assignment_id: <%= ActiveRecord::FixtureSet.identify("assignment_#{assignment_n}") %>
+  computer_assignment_id: <%= ActiveRecord::FixtureSet.identify("computer_assignment_#{assignment_n}") %>
 <% end %>
 <% end %>
 <% end %>

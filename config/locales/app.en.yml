@@ -43,6 +43,7 @@ en:
       last_sign_in_ip: Last sign in IP
       current_sign_in_at: Current sign in at
       current_sign_in_ip: Current sign in IP
+      assignments: Assignments
   computers:
     index:
       name: Name
