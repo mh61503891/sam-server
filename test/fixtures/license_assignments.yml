@@ -1,14 +1,17 @@
 license_assignment_0:
+  key: administrator
   name: Administrator
   color: '#d9534f'
   order: 0
 
 license_assignment_1:
+  key: purchaser
   name: Purchaser
   color: '#428bca'
   order: 10
 
 license_assignment_2:
+  key: user
   name: User
   color: '#5cb85c'
   order: 20

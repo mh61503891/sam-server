@@ -2,44 +2,50 @@ class Computers::SearchController < ApplicationController
 
   def index
     if person_id.present?
-      relation = Computer.joins(:people).where(people:{id:person_id.to_i}).search(search)
+      relation = Computer.joins(:people).includes(:person_computers).where(people:{id:person_id.to_i}).search(search)
       @count = relation.uniq.count
       @computers = relation.uniq.order([sort, order].join(' ')).limit(limit).offset(offset)
     else
-      relation = Computer.search(search)
+      relation = Computer.joins(:people, :person_computers).search(search)
       @count = relation.count
       @computers = relation.order([sort, order].join(' ')).limit(limit).offset(offset)
     end
+
+    computer_assignments = ComputerAssignment.all.select(:id, :key)
 
     data = {}
     data[:total] = @count
     data[:name] = :computers
     data[:rows] = []
+
     @computers.each do |c|
-      data[:rows] << {
+      computer_assignment_ids = c.person_computers.map{ |person_computer|
+        if person_computer.person_id == person_id.to_i
+           person_computer.computer_assignment_id
+        end
+      }.compact
+      row = {
         id:c.id,
         name:c.name,
         name_ruby:c.name_ruby,
         name_en:c.name_en,
         description:c.description,
-        assignments:PersonComputer.includes(:assignment).where(person_id:person_id, computer_id:c.id).map{ |e|
-          a = e.assignment
-          {
-            id:a.id,
-            name:a.name,
-            name_ruby:a.name_ruby,
-            name_en:a.name_en,
-            description: a.description,
-            color:a.color,
-            order:a.order,
-          }
-        }.sort_by{ |a| a[:order] },
-        # x:PersonComputer.includes
-        # supplier:c.supplier.name,
-        # manufacturer:cmanufacturer.name,
         created_at:c.created_at,
         updated_at:c.updated_at,
       }
+      computer_assignments.each do |ca|
+        row["assignment_#{ca.key}"] = computer_assignment_ids.include?(ca.id)
+      end
+      data[:rows] << row
+    end
+
+    if params[:sort] =~ /^assignment/
+      data[:rows].sort!{ |row|
+        row[params[:sort]] ? 1 : -1
+      }
+    end
+    if params[:order] =~ /^desc$/
+      data[:rows].reverse!
     end
     render json:data
   end

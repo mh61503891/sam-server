@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20170101000052) do
   enable_extension "plpgsql"
 
   create_table "application_assignments", force: :cascade do |t|
+    t.string   "key",         null: false
     t.string   "name",        null: false
     t.string   "name_ruby"
     t.string   "name_en"
@@ -26,6 +27,7 @@ ActiveRecord::Schema.define(version: 20170101000052) do
     t.datetime "updated_at",  null: false
     t.index ["color"], name: "index_application_assignments_on_color", using: :btree
     t.index ["description"], name: "index_application_assignments_on_description", using: :btree
+    t.index ["key"], name: "index_application_assignments_on_key", unique: true, using: :btree
     t.index ["name"], name: "index_application_assignments_on_name", unique: true, using: :btree
     t.index ["name_en"], name: "index_application_assignments_on_name_en", using: :btree
     t.index ["name_ruby"], name: "index_application_assignments_on_name_ruby", using: :btree
@@ -63,6 +65,7 @@ ActiveRecord::Schema.define(version: 20170101000052) do
   end
 
   create_table "computer_assignments", force: :cascade do |t|
+    t.string   "key",         null: false
     t.string   "name",        null: false
     t.string   "name_ruby"
     t.string   "name_en"
@@ -73,6 +76,7 @@ ActiveRecord::Schema.define(version: 20170101000052) do
     t.datetime "updated_at",  null: false
     t.index ["color"], name: "index_computer_assignments_on_color", using: :btree
     t.index ["description"], name: "index_computer_assignments_on_description", using: :btree
+    t.index ["key"], name: "index_computer_assignments_on_key", unique: true, using: :btree
     t.index ["name"], name: "index_computer_assignments_on_name", unique: true, using: :btree
     t.index ["name_en"], name: "index_computer_assignments_on_name_en", using: :btree
     t.index ["name_ruby"], name: "index_computer_assignments_on_name_ruby", using: :btree
@@ -112,6 +116,7 @@ ActiveRecord::Schema.define(version: 20170101000052) do
   end
 
   create_table "license_assignments", force: :cascade do |t|
+    t.string   "key",         null: false
     t.string   "name",        null: false
     t.string   "name_ruby"
     t.string   "name_en"
@@ -122,6 +127,7 @@ ActiveRecord::Schema.define(version: 20170101000052) do
     t.datetime "updated_at",  null: false
     t.index ["color"], name: "index_license_assignments_on_color", using: :btree
     t.index ["description"], name: "index_license_assignments_on_description", using: :btree
+    t.index ["key"], name: "index_license_assignments_on_key", unique: true, using: :btree
     t.index ["name"], name: "index_license_assignments_on_name", unique: true, using: :btree
     t.index ["name_en"], name: "index_license_assignments_on_name_en", using: :btree
     t.index ["name_ruby"], name: "index_license_assignments_on_name_ruby", using: :btree
