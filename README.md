@@ -1,38 +1,7 @@
 # README
 
+Note: This project is suspended.
+
 Demo Site https://sunaba-server.herokuapp.com/
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/mh61503891/sunaba-server)
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-TODO
-
-* 氏名の多言語化
-* i18n
-
-
-
-bundle exec i18n-tasks health
-bundle exec i18n-tasks health -f yaml
