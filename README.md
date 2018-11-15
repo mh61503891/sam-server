@@ -1,6 +1,6 @@
 # README
 
-Note: This project is suspended.
+**Note: This project is suspended.**
 
 Demo Site https://sunaba-server.herokuapp.com/
 
